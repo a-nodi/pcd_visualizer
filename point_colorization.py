@@ -8,6 +8,29 @@ from utils import read_yaml
 NUSCENE_PATH = os.getcwd()
 COLOR_MAP_PATH = "color_map.yaml"
 
+"""
+TODO
+1. [WIP] Create pcd loader
+  1.1. [DONE] nuScene loader
+  1.2. [TODO] waymo loader
+  1.3. [TODO] SemanticKitti loader
+
+2. [WIP] colorize pcd
+  2.1. [DONE] colorize nuScene
+  2.2. [TODO] colorize waymo
+  2.3. [TODO] colorize SemanticKITTI
+  [WIP] Bird eye view
+
+3. [TODO] visualize
+  3.1. [TODO] sequentially visualize
+  3.2. [TODO] goto next, previous scene function 
+  3.3. [TODO] goto next, previdus sequence function
+  3.4. [TODO] video save
+  3.5. [TODO] window parameter set
+ 
+NOTE
+"""
+
 
 class Visualizer:
     def __init__(self, data_path, color_map_path):
@@ -34,6 +57,8 @@ class Visualizer:
     def map_colors(self, np_label, is_zero_base=True):
         color_map = self.zero_base_color_map if is_zero_base else self.color_map
         np_color = np.vectorize(color_map.__getitem__, otypes=[np.ndarray])(np_label)
+        np_color = np_color.tolist()
+        np_color = np.array(np_color).reshape(-1, 3)
 
         return np_color
 
@@ -49,7 +74,18 @@ class Visualizer:
     def visualize(self, scene_num):
         list_of_pcd = self.load_scene(scene_num)
         # TODO: set to bird eye view!
-        o3d.visualization.draw_geometries([list_of_pcd])
+        vis = o3d.visualization.Visualizer()
+        vis.create_window()
+        ctr = vis.get_view_control()
+        # ctr.change_field_of_view(step=90)
+        trajectory = o3d.io.read_pinhole_camera_trajectory("nuScene_bird_eye_view.json")
+        ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=True)
+        vis.add_geometry(list_of_pcd[0])
+        vis.run()
+        # params = ctr.convert_to_pinhole_camera_parameters()
+        # trajectory = o3d.camera.PinholeCameraTrajectory()
+        # trajectory.parameters = [params]
+        # o3d.io.write_pinhole_camera_trajectory("nuScene_bird_eye_view.json", trajectory)
 
 
 if __name__ == "__main__":

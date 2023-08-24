@@ -5,6 +5,9 @@ import yaml
 import numpy as np
 import open3d as o3d
 
+WIDTH = 1600
+HEIGHT = 900
+
 
 
 def read_yaml(path):
@@ -95,7 +98,7 @@ class Visualizer:
 
         return list_of_pcd
 
-    def visualize(self, np_pcd, np_label, dataset_name: str, video_name: str="") -> None:
+    def visualize(self, np_pcd, np_label, dataset_name: str, height: float=50.0, video_name: str="") -> None:
         """
         Receive list of, or one numpy.array pcds and label and Visualize sequently.
 
@@ -109,10 +112,17 @@ class Visualizer:
         assert type(np_label) == np.array or type(np_label) == list, f"Invalid np_label(type{type(np_label)}) received."
         
         vis = o3d.visualization.Visualizer()
-        vis.create_window(width=1920, height=1080)
+        vis.create_window(width=WIDTH, height=HEIGHT)
         ctr = vis.get_view_control()
         trajectory = o3d.io.read_pinhole_camera_trajectory(self.camera_trajectory_path)
         
+        # Modify extrisic to set height
+        parameter = trajectory.parameters[0]
+        _extrinsic = np.copy(parameter.extrinsic)
+        _extrinsic[2, 3] = height
+        parameter.extrinsic = _extrinsic
+        trajectory.parameters[0] = parameter
+
         list_of_pcd = []
         list_of_image_path = []
         
@@ -126,7 +136,7 @@ class Visualizer:
 
             vis.clear_geometries()  # Clear pcd and reset camera pose
             vis.add_geometry(list_of_pcd[i])  # Add pcd seqencnce
-            ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=False)  # Set camera pose
+            ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=True)  # Set camera pose
             vis.poll_events()
             vis.update_renderer()
             
@@ -164,8 +174,8 @@ class Visualizer:
 
         assert type(video_name) == str, f"{video_name} is not string."
         # Video fream size
-        frame_size = (1920, 1080)
-        out = cv2.VideoWriter(os.path.join("videos", video_name),cv2.VideoWriter_fourcc(*'mp4v'), 15, frame_size)
+        frame_size = (WIDTH, HEIGHT)
+        out = cv2.VideoWriter(os.path.join("videos", video_name), cv2.VideoWriter_fourcc(*'mp4v'), 15, frame_size)
         
         for image_path in list_of_image_path:
             image = cv2.imread(image_path)
@@ -182,5 +192,6 @@ if __name__ == "__main__":
     nuscene_reader = NuSceneReader(NUSCENE_PATH)
     list_of_np_pcd, list_of_label = nuscene_reader.load_data_for_scene(1)
     record_video = True
+    height = 25
     video_name = "test_video.mp4"
-    visualizer.visualize(list_of_np_pcd, list_of_label, "nuscene", video_name)
+    visualizer.visualize(list_of_np_pcd, list_of_label, "nuscene", height, video_name)

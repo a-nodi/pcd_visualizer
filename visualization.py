@@ -1,6 +1,7 @@
 import os
 import cv2
 from datetime import datetime
+from math import sin, cos
 import yaml
 import numpy as np
 import open3d as o3d
@@ -40,10 +41,18 @@ class Visualizer:
 
         # load color maps
         self.color_maps = {
-            "kitti": read_yaml(kitti_color_map_path)["color_map"],
-            "nuscene": read_yaml(nuscene_color_map_path)["color_map"],
-            "waymo": read_yaml(waymo_color_map_path)["color_map"]
+            "pcd": {
+                "kitti": read_yaml(kitti_color_map_path)["pcd_color_map"],
+                "nuscene": read_yaml(nuscene_color_map_path)["pcd_color_map"],
+                "waymo": read_yaml(waymo_color_map_path)["pcd_color_map"]
+            },
+            "bbox": {
+                "kitti": read_yaml(kitti_color_map_path)["bbox_color_map"],
+                "nuscene": read_yaml(nuscene_color_map_path)["bbox_color_map"],
+                "waymo": read_yaml(waymo_color_map_path)["bbox_color_map"]
+            }
         }
+
         self.camera_trajectory_path = camera_trajectory_path
 
         self.create_images = create_images
@@ -61,7 +70,7 @@ class Visualizer:
                 self.color_maps[dataset_name][label] = [x / 256 for x in self.color_maps[dataset_name][label]]
                 self.color_maps[dataset_name][label] = np.asarray(self.color_maps[dataset_name][label]).T
 
-    def map_colors(self, np_label: np.array, dataset_name: str) -> np.array:
+    def map_colors(self, np_label: np.array, geometry_type, dataset_name: str) -> np.array:
         """
         Map colors to pcd using labels
 
@@ -70,47 +79,109 @@ class Visualizer:
         :return np_color:
         """
         assert dataset_name in ["kitti", "nuscene", "waymo"], "Invalid dataset name"
-        color_map = self.color_maps[dataset_name]
-        np_color = np.vectorize(color_map.__getitem__, otypes=[np.ndarray])(np_label+1)
+        assert geometry_type in ["pcd", "bbox"], "Invalid geometry type"
+        color_map = self.color_maps[geometry_type][dataset_name]
+        np_color = np.vectorize(color_map.__getitem__, otypes=[np.ndarray])(np_label+1)  # TODO: bbox에 맞는지 확인
         np_color = np_color.tolist()
         np_color = np.array(np_color).reshape(-1, 3)
 
         return np_color
 
-    def preprocess_scene(self, list_of_np_pcd: list[np.array], list_of_np_label: list[np.array], dataset_name: str) -> list[np.array]:
+    def preprocess_pcd(self, list_of_np_pcd: list[np.array], list_of_np_pcd_label: list[np.array], dataset_name: str) -> list[np.array]:
         """
-        Receive list of numpy.array pcds and label and convert it to list of open3d.geometry.PointCloud()
+        Receive list of numpy.array pcds and pcd labels and convert it to list of open3d.geometry.PointCloud()
         
         :param list_of_np_pcd:
-        :param list_of_np_label:
+        :param list_of_np_pcd_label:
         :param dataset_name:
         :return list_of_pcd: 
         """
         list_of_pcd = []
 
-        for np_pcd, np_label in zip(list_of_np_pcd, list_of_np_label):
+        for np_pcd, np_pcd_label in zip(list_of_np_pcd, list_of_np_pcd_label):
             pcd = o3d.geometry.PointCloud()
             pcd.points = o3d.utility.Vector3dVector(np_pcd)
-            np_color = self.map_colors(np_label, dataset_name)
+            np_color = self.map_colors(np_pcd_label, "pcd", dataset_name)
             pcd.colors = o3d.utility.Vector3dVector(np_color)  # map colors to corresponding points
 
             list_of_pcd.append(pcd)
 
         return list_of_pcd
 
-    def visualize(self, np_pcd, np_label, dataset_name: str, height: float=50.0, video_name: str="") -> None:
+    @staticmethod
+    def calculate_bounds(np_bbox: np.array) -> list[np.array]:
+        """
+        Caculate min bound and max bounds from bbox numpy format
+
+        :param np_bbox:
+        :return [min_bound, max_bound]: 
+
+        """
+        center_x, center_y, center_z = np_bbox[0], np_bbox[1], np_bbox[2]
+        length, width, height = np_bbox[3], np_bbox[4], np_bbox[5]
+        heading = np_bbox[6]
+
+        min_bound = np.array(
+            [center_x - ((width / 2) * cos(heading) - (length / 2) * sin(heading)),
+             center_y - ((width / 2) * sin(heading) + (length / 2) * cos(heading)),
+             center_z - height / 2 
+            ]
+        )
+
+        max_bound = np.array(
+            [center_x + (width / 2) * cos(heading) - (length / 2) * sin(heading), 
+             center_y + (width / 2) * sin(heading) + (length / 2) * cos(heading), 
+             center_z + height / 2]
+             )
+
+        return [min_bound, max_bound]
+
+    def preprocess_bbox(self, list_of_np_bboxes: list[np.array], list_of_np_bboxes_label: list[np.array], dataset_name: str) -> list[np.array]:
+        """
+        Receive list of numpy.array bboxes and bbox labels and convert it to list of open3d.geometry.AxisAlignedBoundingBox
+        
+        :param list_of_np_bbox:
+        :param list_of_np_bbox_label:
+        :param dataset_name:
+        :return list_of_bbox: 
+        """
+        
+        list_of_bboxes = []
+
+        for np_bboxes, np_bbox_labels in zip(list_of_np_bboxes, list_of_np_bboxes_label):
+            list_of_bbox = []
+            for np_bbox, np_bbox_label in zip(np_bboxes, np_bbox_labels):
+                min_bound, max_bound = self.calculate_bounds(np_bbox)
+                bbox = o3d.geometry.AxisAlignedBoundingBox(min_bound=min_bound, max_bound=max_bound)
+                np_color = self.map_colors(np_bbox_label, "bbox", dataset_name)
+                bbox.color = o3d.utility.Vector3dVector(np_color)
+                list_of_bbox.append(bbox)
+
+            list_of_bboxes.append(list_of_bbox)
+        
+        return list_of_bboxes
+
+    def visualize(self, np_pcd, np_pcd_label, np_bbox=None, np_bbox_label=None, dataset_name: str="", height: float=50.0, video_name: str="") -> None:
         """
         Receive list of, or one numpy.array pcds and label and Visualize sequently.
 
         NOTE: can put list of np.arrays or one np.array at np_pcd and np_label
-        :param list_of_np_pcd:
-        :param list_of_np_label:
+        :param np_pcd:
+        :param np_label:
+        :param np_bbox:
+        :param np_bbox_label:
+        :param dataset_name:
+        :param height:
+        :param video_name:
         :param dataset_name:
         """
 
         assert type(np_pcd) == np.array or type(np_pcd) == list, f"Invalid np_pcd(type{type(np_pcd)}) received."
-        assert type(np_label) == np.array or type(np_label) == list, f"Invalid np_label(type{type(np_label)}) received."
-        
+        assert type(np_pcd_label) == np.array or type(np_pcd_label) == list, f"Invalid np_pcd_label(type{type(np_pcd_label)}) received."
+        if np_bbox is not None:
+            assert type(np_bbox) == np.array or type(np_bbox) == list, f"Invalid np_bbox(type{type(np_bbox)}) received."
+            assert type(np_bbox_label) == np.array or type(np_bbox_label) == list, f"Invalid np_bbox_label(type{type(np_bbox_label)}) received."
+
         vis = o3d.visualization.Visualizer()
         vis.create_window(width=WIDTH, height=HEIGHT)
         ctr = vis.get_view_control()
@@ -124,18 +195,31 @@ class Visualizer:
         trajectory.parameters[0] = parameter
 
         list_of_pcd = []
+        list_of_bboxes = []
         list_of_image_path = []
         
         if type(np_pcd) == np.array:
-            list_of_pcd = self.preprocess_scene([np_pcd], [np_label], dataset_name)
+            list_of_pcd = self.preprocess_pcd([np_pcd], [np_pcd_label], dataset_name)
 
         elif type(np_pcd) == list:
-            list_of_pcd = self.preprocess_scene(np_pcd, np_label, dataset_name)
+            list_of_pcd = self.preprocess_pcd(np_pcd, np_pcd_label, dataset_name)
+        
+        if np_bbox is not None:
+            if type(np_bbox) == np.array:
+                list_of_bboxes = self.preprocess_bbox([np_bbox], [np_bbox_label], dataset_name)
+
+            elif type(np_bbox) == list:
+                list_of_bboxes = self.preprocess_bbox(np_bbox, np_bbox_label, dataset_name)
+
 
         for i in range(len(list_of_pcd)):
 
             vis.clear_geometries()  # Clear pcd and reset camera pose
             vis.add_geometry(list_of_pcd[i])  # Add pcd seqencnce
+            if np_bbox is not None:
+                for bbox in list_of_bboxes[i]:
+                    vis.add_geometry(bbox)
+
             ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=True)  # Set camera pose
             vis.poll_events()
             vis.update_renderer()

@@ -1,4 +1,4 @@
-label:
+pcd_label:
   0: "noise"
   1: "flat.driveable_surface"
   2: "flat.sidewalk"
@@ -9,7 +9,7 @@ label:
   7: "static.other"
   8: "vehicle.ego"
 
-color_map:
+pcd_color_map:
   0: [0, 0, 0]  # 0
   1: [255, 0, 255]
   2: [75, 0, 75]
@@ -19,3 +19,6 @@ color_map:
   6: [0, 175, 0]
   7: [50, 120, 255]
   8: [245, 150, 100]
+
+bbox_color_map:
+  

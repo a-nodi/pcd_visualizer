@@ -42,4 +42,21 @@ pcd_color_map:  # color from original KITTI
   18: [150, 240, 255]  # 80
   19: [0, 0, 255]  # 81
 
+bbox_lable:
+  0: "DontCare"
+  1: "Car"
+  2: "Van"
+  3: "Truck"
+  4: "Pedestrian"
+  5: "Person_sitting"
+  6: "Cyclist"
+  7: "Tram"
 bbox_color_map:
+  0: [0, 0, 0]
+  1: [245, 150, 100]
+  2: [255, 0, 0]
+  3: [180, 30, 80]
+  4: [30, 30, 255]
+  5: [30, 30, 255]
+  6: [200, 40, 255]
+  7: [255, 0, 0]

@@ -311,7 +311,7 @@ if __name__ == "__main__":
         np_pcd=list_of_np_pcd,  # n x 3 np.array
         np_pcd_label=list_of_label, # n x 1 np.array
         np_bbox=None,  # n x 7 np.array
-        np_bbox_label = None,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label) to convert string label to integer labels
+        np_bbox_label = None,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label, dataset_name) to convert string label to integer labels
         dataset_name="nuscene", # [kitti|nuscene|waymo]
         height=height,  # z-coord of BEV camera
         video_name=video_name  # name of video to be saved in videos/

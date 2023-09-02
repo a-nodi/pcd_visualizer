@@ -95,7 +95,8 @@ class Visualizer:
         assert dataset_name in ["kitti", "nuscene", "waymo"], "Invalid dataset name"
         assert geometry_type in ["pcd", "bbox"], "Invalid geometry type"
         color_map = self.color_maps[geometry_type][dataset_name]
-        np_color = np.vectorize(color_map.__getitem__, otypes=[np.ndarray])(np_label+1)  # TODO: bbox에 맞는지 확인
+        np_label = np_label + 1 if dataset_name in ["kitti", "nuscene"] else np_label  # Shift index if necessary (due to noise index)
+        np_color = np.vectorize(color_map.__getitem__, otypes=[np.ndarray])(np_label)  # TODO: bbox에 맞는지 확인
         np_color = np_color.tolist()
         np_color = np.array(np_color).reshape(-1, 3)
 
@@ -151,15 +152,15 @@ class Visualizer:
         heading = np_bbox[6]
 
         min_bound = np.array(
-            [center_x - ((width / 2) * cos(heading) - (length / 2) * sin(heading)),
-             center_y - ((width / 2) * sin(heading) + (length / 2) * cos(heading)),
+            [center_x - ((length / 2) * cos(heading) - (width / 2) * sin(heading)),
+             center_y - ((length / 2) * sin(heading) + (width / 2) * cos(heading)),
              center_z - height / 2 
             ]
         )
 
         max_bound = np.array(
-            [center_x + (width / 2) * cos(heading) - (length / 2) * sin(heading), 
-             center_y + (width / 2) * sin(heading) + (length / 2) * cos(heading), 
+            [center_x + (length / 2) * cos(heading) - (width / 2) * sin(heading), 
+             center_y + (length / 2) * sin(heading) + (width / 2) * cos(heading), 
              center_z + height / 2]
              )
 
@@ -179,11 +180,11 @@ class Visualizer:
 
         for np_bboxes, np_bbox_labels in zip(list_of_np_bboxes, list_of_np_bboxes_label):
             list_of_bbox = []
-            for np_bbox, np_bbox_label in zip(np_bboxes, np_bbox_labels):
-                min_bound, max_bound = self.calculate_bounds(np_bbox)
+            np_color = self.map_colors(np_bbox_labels, "bbox", dataset_name)
+            for i in range(0, np_bboxes.shape[0]):
+                min_bound, max_bound = self.calculate_bounds(np_bboxes[i, :])
                 bbox = o3d.geometry.AxisAlignedBoundingBox(min_bound=min_bound, max_bound=max_bound)
-                np_color = self.map_colors(np_bbox_label, "bbox", dataset_name)
-                bbox.color = o3d.utility.Vector3dVector(np_color)
+                bbox.color = np_color[i, :]
                 list_of_bbox.append(bbox)
 
             list_of_bboxes.append(list_of_bbox)
@@ -300,19 +301,25 @@ class Visualizer:
 if __name__ == "__main__":
     visualizer = Visualizer()
 
-    from nuscene_reader import NuSceneReader
-    NUSCENE_PATH = os.getcwd()
-    nuscene_reader = NuSceneReader(NUSCENE_PATH)
-    list_of_np_pcd, list_of_label = nuscene_reader.load_data_for_scene(1)
+    # from nuscene_loader import NuSceneLoader
+    from waymo_loader import WaymoLoader
+    
+    # NUSCENE_PATH = os.getcwd()
+    # nuscene_loader = NuSceneLoader(NUSCENE_PATH)
+    # list_of_np_pcd, list_of_label = nuscene_loader.load_data_for_scene(1)
+    WAYMO_PATH = os.getcwd()
+    waymo_loader = WaymoLoader(WAYMO_PATH)
+    list_of_np_pcd, list_of_label, list_of_bboxes, list_of_bbox_labels = waymo_loader.load_data_for_scene(0)
+    list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
     record_video = True
-    height = 25
+    height = 50
     video_name = "test_video.mp4"
     visualizer.visualize(
         np_pcd=list_of_np_pcd,  # n x 3 np.array
         np_pcd_label=list_of_label, # n x 1 np.array
-        np_bbox=None,  # n x 7 np.array
-        np_bbox_label = None,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label, dataset_name) to convert string label to integer labels
-        dataset_name="nuscene", # [kitti|nuscene|waymo]
+        np_bbox=list_of_bboxes,  # n x 7 np.array
+        np_bbox_label=list_of_bbox_labels,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label, dataset_name) to convert string label to integer labels
+        dataset_name="waymo", # [kitti|nuscene|waymo]
         height=height,  # z-coord of BEV camera
         video_name=video_name  # name of video to be saved in videos/
         )

@@ -59,3 +59,9 @@ bbox_color_map:
   1: [30, 30, 255]
   2: [200, 40, 255]
   3: [0, 0, 255]
+
+bbox_label_inverse:
+  "TYPE_VEHICLE": 0
+  "TYPE_PEDESTRIAN": 1
+  "TYPE_CYCLIST": 2
+  "TYPE_SIGN": 3

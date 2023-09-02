@@ -51,6 +51,7 @@ bbox_lable:
   5: "Person_sitting"
   6: "Cyclist"
   7: "Tram"
+
 bbox_color_map:
   0: [0, 0, 0]
   1: [245, 150, 100]
@@ -60,3 +61,13 @@ bbox_color_map:
   5: [30, 30, 255]
   6: [200, 40, 255]
   7: [255, 0, 0]
+
+bbox_label_inverse:
+  "DontCare": 0
+  "Car": 1
+  "Van": 2
+  "Truck": 3
+  "Pedestrian": 4
+  "Person_sitting": 5
+  "Cyclist": 6
+  "Tram": 7

@@ -10,7 +10,6 @@ WIDTH = 1600
 HEIGHT = 900
 
 
-
 def read_yaml(path):
     content = []
     assert os.path.isfile(path), f"{path} doesn't exist"
@@ -52,7 +51,13 @@ class Visualizer:
                 "waymo": read_yaml(waymo_color_map_path)["bbox_color_map"]
             }
         }
-
+        
+        self.bbox_label_maps = {
+            "kitti": read_yaml(kitti_color_map_path)["bbox_label_inverse"],
+            "nuscene": read_yaml(nuscene_color_map_path)["bbox_label_inverse"],
+            "waymo": read_yaml(waymo_color_map_path)["bbox_label_inverse"]
+        }
+        
         self.camera_trajectory_path = camera_trajectory_path
 
         self.create_images = create_images
@@ -60,16 +65,25 @@ class Visualizer:
 
         # Normalize color maps
         self.normalize_color_maps()
-
+    
+    @staticmethod
+    def bgr_to_rgb(bgr):
+        return bgr[::-1]
+    
     def normalize_color_maps(self):
         """
         Normalize color maps from range 0 ~ 255 to range 0 ~ 1
         """
         for dataset_name in ["kitti", "nuscene", "waymo"]:  
-            for label in self.color_maps[dataset_name].keys():
-                self.color_maps[dataset_name][label] = [x / 256 for x in self.color_maps[dataset_name][label]]
-                self.color_maps[dataset_name][label] = np.asarray(self.color_maps[dataset_name][label]).T
+            for label in self.color_maps["pcd"][dataset_name].keys():
+                self.color_maps["pcd"][dataset_name][label] = [x / 256 for x in self.color_maps["pcd"][dataset_name][label]]
+                self.color_maps["pcd"][dataset_name][label] = np.asarray(self.bgr_to_rgb(self.color_maps["pcd"][dataset_name][label])).T
 
+            for label in self.color_maps["bbox"][dataset_name].keys():
+                self.color_maps["bbox"][dataset_name][label] = [x / 256 for x in self.color_maps["bbox"][dataset_name][label]]
+                self.color_maps["bbox"][dataset_name][label] = np.asarray(self.bgr_to_rgb(self.color_maps["bbox"][dataset_name][label])).T
+                
+    
     def map_colors(self, np_label: np.array, geometry_type, dataset_name: str) -> np.array:
         """
         Map colors to pcd using labels
@@ -87,6 +101,21 @@ class Visualizer:
 
         return np_color
 
+    def map_bbox_label(self, list_of_bbox_label: list[str], dataset_name: str) -> np.array:
+        """
+        Map bbox string labels to integer labels
+        
+        :param list_of_bbox_label:
+        :param dataset_name:
+        :return np_bbox_label: 
+        """
+
+        assert dataset_name in ["kitti", "nuscene", "waymo"], "Invalid dataset name"
+        bbox_label_map = self.bbox_label_maps[dataset_name]
+        np_bbox_label = np.array([int(bbox_label_map[string_label]) for string_label in list_of_bbox_label])
+        
+        return np_bbox_label
+        
     def preprocess_pcd(self, list_of_np_pcd: list[np.array], list_of_np_pcd_label: list[np.array], dataset_name: str) -> list[np.array]:
         """
         Receive list of numpy.array pcds and pcd labels and convert it to list of open3d.geometry.PointCloud()
@@ -176,11 +205,11 @@ class Visualizer:
         :param dataset_name:
         """
 
-        assert type(np_pcd) == np.array or type(np_pcd) == list, f"Invalid np_pcd(type{type(np_pcd)}) received."
-        assert type(np_pcd_label) == np.array or type(np_pcd_label) == list, f"Invalid np_pcd_label(type{type(np_pcd_label)}) received."
+        assert type(np_pcd) == np.array or type(np_pcd) == list, f"Invalid np_pcd(type {type(np_pcd)}) received."
+        assert type(np_pcd_label) == np.array or type(np_pcd_label) == list, f"Invalid np_pcd_label(type {type(np_pcd_label)}) received."
         if np_bbox is not None:
-            assert type(np_bbox) == np.array or type(np_bbox) == list, f"Invalid np_bbox(type{type(np_bbox)}) received."
-            assert type(np_bbox_label) == np.array or type(np_bbox_label) == list, f"Invalid np_bbox_label(type{type(np_bbox_label)}) received."
+            assert type(np_bbox) == np.array or type(np_bbox) == list, f"Invalid np_bbox(type {type(np_bbox)}) received."
+            assert type(np_bbox_label) == np.array or type(np_bbox_label) == list, f"Invalid np_bbox_label(type {type(np_bbox_label)}) received."
 
         vis = o3d.visualization.Visualizer()
         vis.create_window(width=WIDTH, height=HEIGHT)
@@ -278,4 +307,12 @@ if __name__ == "__main__":
     record_video = True
     height = 25
     video_name = "test_video.mp4"
-    visualizer.visualize(list_of_np_pcd, list_of_label, "nuscene", height, video_name)
+    visualizer.visualize(
+        np_pcd=list_of_np_pcd,  # n x 3 np.array
+        np_pcd_label=list_of_label, # n x 1 np.array
+        np_bbox=None,  # n x 7 np.array
+        np_bbox_label = None,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label) to convert string label to integer labels
+        dataset_name="nuscene", # [kitti|nuscene|waymo]
+        height=height,  # z-coord of BEV camera
+        video_name=video_name  # name of video to be saved in videos/
+        )

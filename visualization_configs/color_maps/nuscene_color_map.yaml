@@ -21,29 +21,30 @@ pcd_color_map:
   8: [245, 150, 100]
 
 bbox_label:
-  0: animal
-  1: human.pedestrian.adult
-  2: human.pedestrian.child
-  3: human.pedestrian.construction_worker
-  4: human.pedestrian.personal_mobility
-  5: human.pedestrian.police_officer
-  6: human.pedestrian.stroller
-  7: human.pedestrian.wheelchair
-  8: movable_object.barrier
-  9: movable_object.debris
-  10: movable_object.pushable_pullable
-  11: movable_object.trafficcone
-  12: static_object.bicycle_rack
-  13: vehicle.bicycle
-  14: vehicle.bus.bendy
-  15: vehicle.bus.rigid
-  16: vehicle.car
-  17: vehicle.construction
-  18: vehicle.emergency.ambulance
-  19: vehicle.emergency.police
-  20: vehicle.motorcycle
-  21: vehicle.trailer
-  22: vehicle.truck
+  0: "animal"
+  1: "human.pedestrian.adult"
+  2: "human.pedestrian.child"
+  3: "human.pedestrian.construction_worker"
+  4: "human.pedestrian.personal_mobility"
+  5: "human.pedestrian.police_officer"
+  6: "human.pedestrian.stroller"
+  7: "human.pedestrian.wheelchair"
+  8: "movable_object.barrier"
+  9: "movable_object.debris"
+  10: "movable_object.pushable_pullable"
+  11: "movable_object.trafficcone"
+  12: "static_object.bicycle_rack"
+  13: "vehicle.bicycle"
+  14: "vehicle.bus.bendy"
+  15: "vehicle.bus.rigid"
+  16: "vehicle.car"
+  17: "vehicle.construction"
+  18: "vehicle.emergency.ambulance"
+  19: "vehicle.emergency.police"
+  20: "vehicle.motorcycle"
+  21: "vehicle.trailer"
+  22: "vehicle.truck"
+
 bbox_color_map:
   0: [255, 255, 50]
   1: [30, 30, 255]
@@ -68,3 +69,28 @@ bbox_color_map:
   20: [150, 60, 30]
   21: [255, 0, 0]
   22: [180, 30, 80]
+
+bbox_label_inverse:
+  "animal" : 0
+  "human.pedestrian.adult": 1
+  "human.pedestrian.child": 2
+  "human.pedestrian.construction_worker": 3
+  "human.pedestrian.personal_mobility": 4
+  "human.pedestrian.police_officer": 5
+  "human.pedestrian.stroller": 6
+  "human.pedestrian.wheelchair": 7
+  "movable_object.barrier": 8
+  "movable_object.debris": 9
+  "movable_object.pushable_pullable": 10
+  "movable_object.trafficcone": 11
+  "static_object.bicycle_rack": 12
+  "vehicle.bicycle": 13
+  "vehicle.bus.bendy": 14
+  "vehicle.bus.rigid": 15
+  "vehicle.car": 16
+  "vehicle.construction": 17
+  "vehicle.emergency.ambulance": 18
+  "vehicle.emergency.police": 19
+  "vehicle.motorcycle": 20
+  "vehicle.trailer": 21
+  "vehicle.truck": 22

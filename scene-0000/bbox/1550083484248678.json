@@ -1,0 +1,1129 @@
+[
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -60.95365273443525,
+            "center_y": -2.0545987648183655,
+            "center_z": 2.05563162008562,
+            "length": 6.1364118200823,
+            "width": 2.3747292583603823,
+            "height": 3.199999999999978,
+            "heading": -0.056980800106311236
+        },
+        "metadata": {
+            "speed_x": -3.552713678800501e-14,
+            "speed_y": 2.8421709430404007e-13,
+            "speed_z": -0.04064566226467392,
+            "accel_x": 8.881784197001251e-13,
+            "accel_y": -8.5265128291212e-12,
+            "accel_z": -1.3877787807814455e-14
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "0QXtLAoMcF26x6k0m-7gVQ"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 38.242205033834296,
+            "center_y": 4.092192906207856,
+            "center_z": 2.6689342243246017,
+            "length": 0.10583741624234454,
+            "width": 0.9967263915799129,
+            "height": 1.0500000000000034,
+            "heading": -0.16109498886945417
+        },
+        "metadata": {
+            "speed_x": 0.007701379107594164,
+            "speed_y": -0.0005786207725577697,
+            "speed_z": -0.036144704886420104,
+            "accel_x": -3.7871927816013335e-10,
+            "accel_y": 2.4158453015843403e-11,
+            "accel_z": 1.7786487560567108e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "1PsMDSrIiG9JtR56AjNz4Q"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 44.09290445609642,
+            "center_y": -2.9869209102762397,
+            "center_z": 0.7361423213362457,
+            "length": 4.561743191816301,
+            "width": 2.022908928261256,
+            "height": 1.770000000000004,
+            "heading": -0.0017591136283496844
+        },
+        "metadata": {
+            "speed_x": 3.552713678800501e-14,
+            "speed_y": -2.8421709430404007e-13,
+            "speed_z": -0.008390968379404229,
+            "accel_x": 5.32907051820075e-13,
+            "accel_y": -4.2632564145606e-12,
+            "accel_z": 5.898732891029822e-10
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "6OLGLOespRwkKEzGq-ertA"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -21.549435297800528,
+            "center_y": 4.520534806060823,
+            "center_z": 2.672421690277588,
+            "length": 0.0779287767951225,
+            "width": 0.5031531974644243,
+            "height": 0.5700000000000021,
+            "heading": 3.111921102448793
+        },
+        "metadata": {
+            "speed_x": 0.013808493815865575,
+            "speed_y": 0.008413842127765747,
+            "speed_z": -0.04887896061502722,
+            "accel_x": -0.020278419941632816,
+            "accel_y": -0.0035752171726244337,
+            "accel_z": -0.0012720938070948094
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "6_xi3oao_ua6rryUn1rhYQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -10.469840545436568,
+            "center_y": -37.6457931345758,
+            "center_z": 6.023172225156088,
+            "length": 4.310390284578498,
+            "width": 1.8847180014361193,
+            "height": 1.8900000000000041,
+            "heading": -3.138732164911741
+        },
+        "metadata": {
+            "speed_x": 1.40754271350239e-29,
+            "speed_y": 1.126034170801912e-28,
+            "speed_z": 0.06517117139549514,
+            "accel_x": 1.4075406999992676e-28,
+            "accel_y": 1.1260325599994141e-27,
+            "accel_z": 0.13617455293297706
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "AxTUqw45-ogWZ3kEmd1uSw"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.83514571797707,
+            "center_y": -27.04261733415842,
+            "center_z": 3.2874362350292756,
+            "length": 4.5462930401453505,
+            "width": 1.8879810791812062,
+            "height": 2.539999999999992,
+            "heading": 3.116127202635445
+        },
+        "metadata": {
+            "speed_x": 0.0,
+            "speed_y": -1.4210854715202004e-12,
+            "speed_z": -2.7755575615628914e-16,
+            "accel_x": 5.32907051820075e-13,
+            "accel_y": -4.2632564145606e-12,
+            "accel_z": -1.3877787807814455e-15
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "BW7xfESjPW_I2VU0lWh5YA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.359156069002665,
+            "center_y": -16.883215939085858,
+            "center_z": 2.172925728165893,
+            "length": 4.8876654242473325,
+            "width": 2.057767102020782,
+            "height": 1.7100000000000044,
+            "heading": 3.1023586255183053
+        },
+        "metadata": {
+            "speed_x": 0.0685988377063751,
+            "speed_y": 0.006275146139103072,
+            "speed_z": -0.009999460178384822,
+            "accel_x": -1.7763568394002502e-13,
+            "accel_y": -2.8421709430404003e-12,
+            "accel_z": -1.1102230246251564e-14
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "DYVR7DlcS4oNaQmDFshbDA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.524675628103637,
+            "center_y": -11.826712964784747,
+            "center_z": 1.4660609520009018,
+            "length": 4.560561347742946,
+            "width": 1.9370161592912156,
+            "height": 1.6600000000000037,
+            "heading": -3.118631457359976
+        },
+        "metadata": {
+            "speed_x": 0.01083584567371787,
+            "speed_y": 0.0004439618507490195,
+            "speed_z": -0.06114750736903207,
+            "accel_x": -7.606359986311871e-10,
+            "accel_y": -3.41060513164848e-11,
+            "accel_z": 4.2985962012132e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "EYUr3bu5mAe00U3v0cRPJQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 70.88260914189394,
+            "center_y": -1.2039801473274565,
+            "center_z": 2.778018888906871,
+            "length": 4.212872255113534,
+            "width": 1.9766671013054038,
+            "height": 1.7700000000000047,
+            "heading": -0.0017591136280015185
+        },
+        "metadata": {
+            "speed_x": 7.105427357601002e-14,
+            "speed_y": 5.684341886080801e-13,
+            "speed_z": 0.0020687771015105716,
+            "accel_x": 3.5527136788005004e-13,
+            "accel_y": -7.105427357601001e-12,
+            "accel_z": 1.4543193038729638e-10
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "Gz9i3nLbER8pCp3AX1Beng"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 5.762829226927124,
+            "center_y": -2.6418015995659516,
+            "center_z": 0.7469011154542784,
+            "length": 4.86449612522369,
+            "width": 2.070973940796063,
+            "height": 1.8102731501960783,
+            "heading": -0.012891843349726262
+        },
+        "metadata": {
+            "speed_x": 0.07693298830545814,
+            "speed_y": 0.005658217915822661,
+            "speed_z": -0.045755973272634254,
+            "accel_x": 3.786126967497693e-09,
+            "accel_y": 2.742694960033986e-10,
+            "accel_z": -2.251614172887883e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "IHWQxyG4gfadDdiy1cEvow"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 71.50597068463003,
+            "center_y": 7.154973316790347,
+            "center_z": 1.639813977201868,
+            "length": 3.9780584391185405,
+            "width": 1.6898264718315092,
+            "height": 1.7700000000000047,
+            "heading": -0.0017591136285930453
+        },
+        "metadata": {
+            "speed_x": 0.0,
+            "speed_y": -2.533567754087642e-28,
+            "speed_z": 6.185468149628033e-32,
+            "accel_x": 0.0,
+            "accel_y": 8.445227189291518e-28,
+            "accel_z": -2.0618230442606244e-31
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "J_IQqNgOBwFDAnfndzRftA"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -11.840095147856573,
+            "center_y": 13.401261785382303,
+            "center_z": 0.7254060314855906,
+            "length": 0.07289837876065142,
+            "width": 0.45557077402116347,
+            "height": 0.5000000000000036,
+            "heading": -1.5935259838781357
+        },
+        "metadata": {
+            "speed_x": 0.04546584315455959,
+            "speed_y": -0.035710948294820355,
+            "speed_z": -0.013727211732599831,
+            "accel_x": -0.05563325468749269,
+            "accel_y": 0.11851804446223467,
+            "accel_z": -0.006798282871353644
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "Ja_YQ1t2zJZ00Icvva068Q"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 70.41440183567715,
+            "center_y": -9.857019709708766,
+            "center_z": 3.465881074024452,
+            "length": 4.5914417776794245,
+            "width": 2.0759614399017132,
+            "height": 2.409999999999995,
+            "heading": -0.016864432860707268
+        },
+        "metadata": {
+            "speed_x": -1.4210854715202004e-13,
+            "speed_y": 1.9895196601282805e-12,
+            "speed_z": -0.026595191066351442,
+            "accel_x": 5.32907051820075e-13,
+            "accel_y": 0.0,
+            "accel_z": -0.05211172304464134
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "KF6607dgCoJfZswyqqzaTA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 57.84509202366425,
+            "center_y": -11.99518586236627,
+            "center_z": 1.736151903312475,
+            "length": 4.561743191816301,
+            "width": 2.022908928259984,
+            "height": 2.2399999999999984,
+            "heading": -1.5583926809397037
+        },
+        "metadata": {
+            "speed_x": -7.105427357601002e-14,
+            "speed_y": 5.684341886080801e-13,
+            "speed_z": 0.0,
+            "accel_x": 0.0,
+            "accel_y": -9.947598300641401e-12,
+            "accel_z": -2.081668171172168e-15
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "KgAL1YXGdC2YvYtNucLEdw"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -53.534090338461056,
+            "center_y": -7.823321862273588,
+            "center_z": 2.56190786973076,
+            "length": 4.397467497841072,
+            "width": 2.248101924478168,
+            "height": 2.1400000000000006,
+            "heading": -1.5706312842452042
+        },
+        "metadata": {
+            "speed_x": 0.01112372012165963,
+            "speed_y": -0.0012677036343688997,
+            "speed_z": -3.885780586188048e-15,
+            "accel_x": 5.32907051820075e-13,
+            "accel_y": -7.105427357601001e-12,
+            "accel_z": 8.326672684688672e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "L9L6oFQVgk-tuvkVjc4S1Q"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.472137491031845,
+            "center_y": -14.327794364826332,
+            "center_z": 1.8492671319003762,
+            "length": 4.523215594236568,
+            "width": 2.0310090944121897,
+            "height": 1.810000000000004,
+            "heading": -0.022011201200995423
+        },
+        "metadata": {
+            "speed_x": 0.04515722785228604,
+            "speed_y": 0.007333972367860042,
+            "speed_z": -0.07906069921761127,
+            "accel_x": -0.027120880944053734,
+            "accel_y": -0.004404694472270875,
+            "accel_z": -6.9388939039072276e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "LFuE8FgFxEcv-2hv9XG-6w"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -71.35589008194358,
+            "center_y": -6.044458146847319,
+            "center_z": 1.6330192802898296,
+            "length": 4.420880681767123,
+            "width": 2.25298965843438,
+            "height": 1.6900000000000048,
+            "heading": -1.5887360125227148
+        },
+        "metadata": {
+            "speed_x": 0.0017704214281266673,
+            "speed_y": -0.010412144272891055,
+            "speed_z": -0.009555222115155693,
+            "accel_x": -3.5527136788005004e-13,
+            "accel_y": -4.2632564145606e-12,
+            "accel_z": -2.775557561562891e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "Ne2AaddGwrcxS2iKCX3xKw"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -13.046261949107304,
+            "center_y": -7.12824329401883,
+            "center_z": 3.100245968520994,
+            "length": 0.08969160851977165,
+            "width": 0.5257215329238007,
+            "height": 0.5100000000000016,
+            "heading": 1.4410740413394336
+        },
+        "metadata": {
+            "speed_x": 0.045576604902386464,
+            "speed_y": 0.019640875349580256,
+            "speed_z": -0.0002911550990389311,
+            "accel_x": 0.022139552315181273,
+            "accel_y": 0.0032804870429004036,
+            "accel_z": -0.0013864528525711626
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "PEJmop75lgjFAYHcVlas5w"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 63.80319712803092,
+            "center_y": 24.88825324772006,
+            "center_z": -3.434047669191699,
+            "length": 4.977985479654542,
+            "width": 2.0809868208498505,
+            "height": 2.18,
+            "heading": -1.6269439986131844
+        },
+        "metadata": {
+            "speed_x": 0.42569737277156317,
+            "speed_y": -13.139076187382145,
+            "speed_z": 3.4935037127775335,
+            "accel_x": -0.029612866280683315,
+            "accel_y": -0.19274716090228047,
+            "accel_z": -0.18510479903073418
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "PzAyNqPHB4XCf-q8rlpjyQ"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -12.555413640060237,
+            "center_y": -7.154251695697894,
+            "center_z": 2.634218730448623,
+            "length": 0.11492486959601277,
+            "width": 0.8454673859860923,
+            "height": 0.9000000000000021,
+            "heading": 1.2104938483481424
+        },
+        "metadata": {
+            "speed_x": 0.010808099004222527,
+            "speed_y": 0.013278892629386974,
+            "speed_z": 0.002850179513041451,
+            "accel_x": -0.0004829183255949942,
+            "accel_y": 9.288640967497484e-08,
+            "accel_z": -0.001442617802656365
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "RriVrgLKtNOhURExQppYWw"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 48.823788384393424,
+            "center_y": 4.249217702063106,
+            "center_z": 2.1132695070012915,
+            "length": 0.07517479685789524,
+            "width": 0.34332439169961637,
+            "height": 0.4600000000000035,
+            "heading": 3.118926286928196
+        },
+        "metadata": {
+            "speed_x": -0.010318884559517016,
+            "speed_y": 0.0103740538116881,
+            "speed_z": -0.05179557786114994,
+            "accel_x": -0.016217107807214855,
+            "accel_y": 0.0023713644452527656,
+            "accel_z": -0.02747786651680142
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "UaaN3iabHjJDdfH_XomoNQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -29.925614711425055,
+            "center_y": -2.543283084331051,
+            "center_z": 0.9966558677961928,
+            "length": 3.765112448164135,
+            "width": 2.0296903619930533,
+            "height": 2.218526776739953,
+            "heading": -0.03188071075998966
+        },
+        "metadata": {
+            "speed_x": 1.0658141036401503e-13,
+            "speed_y": 2.8421709430404007e-13,
+            "speed_z": 0.00014137428288957254,
+            "accel_x": 1.2434497875801751e-12,
+            "accel_y": -7.105427357601001e-12,
+            "accel_z": -1.1102230246251564e-14
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "VXLmiwA2Z6GrPBIUP30PnQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.773509842583735,
+            "center_y": -21.821546316390595,
+            "center_z": 3.1672245037121627,
+            "length": 4.77940929945546,
+            "width": 1.9852245570707163,
+            "height": 1.8300000000000036,
+            "heading": 3.06434169927541
+        },
+        "metadata": {
+            "speed_x": 1.4210854715202004e-13,
+            "speed_y": 0.0,
+            "speed_z": 5.551115123125783e-16,
+            "accel_x": 7.105427357601001e-13,
+            "accel_y": 0.0,
+            "accel_z": 0.0
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "Vq8rdFcrB7Rfd3GEwTHCRw"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -10.669879524048099,
+            "center_y": -51.54831600660509,
+            "center_z": 9.316884531809393,
+            "length": 4.5462930401453505,
+            "width": 1.8879810791815752,
+            "height": 2.020000000000003,
+            "heading": -3.138732164911715
+        },
+        "metadata": {
+            "speed_x": 3.1669596926095527e-29,
+            "speed_y": 0.0,
+            "speed_z": 0.0,
+            "accel_x": 5.278266993307198e-29,
+            "accel_y": 0.0,
+            "accel_z": 0.0
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "W42dG0Qnn6pTQukAOQZMgg"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -1.3556152659578515,
+            "center_y": 37.173536771129875,
+            "center_z": -4.14412263685881,
+            "length": 4.004528475378601,
+            "width": 1.6530988172757901,
+            "height": 1.650000000000004,
+            "heading": -0.05200205410725944
+        },
+        "metadata": {
+            "speed_x": 7.105427357601002e-14,
+            "speed_y": 1.7053025658242404e-12,
+            "speed_z": 0.0,
+            "accel_x": 1.7763568394002502e-13,
+            "accel_y": -1.4210854715202002e-12,
+            "accel_z": 6.938893903907227e-16
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "WlwqNdKr_2eKCvW_mG48WA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -42.76999096073229,
+            "center_y": -2.0028679864171863,
+            "center_z": 1.3561801117058394,
+            "length": 4.876720958106073,
+            "width": 2.1045899040739813,
+            "height": 2.4450405325283384,
+            "heading": -0.00357662998046937
+        },
+        "metadata": {
+            "speed_x": 0.0037094687561989304,
+            "speed_y": 0.003999854220637644,
+            "speed_z": -0.032075056208186736,
+            "accel_x": -0.012277636364466103,
+            "accel_y": -0.013238757048839032,
+            "accel_z": 0.014549749263330356
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "X7KqZLiVhvWlZ8rg32uZGg"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.131080260987119,
+            "center_y": -6.840117901183476,
+            "center_z": 0.9499145924211803,
+            "length": 4.52213526897607,
+            "width": 2.2043378242075287,
+            "height": 2.1000000000000014,
+            "heading": 0.07370930249390595
+        },
+        "metadata": {
+            "speed_x": 0.05779435312632586,
+            "speed_y": -0.02304528921030169,
+            "speed_z": -0.02270077072176302,
+            "accel_x": -0.03420411125816258,
+            "accel_y": 0.013638765609869095,
+            "accel_z": 0.006038249503247105
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "XAkw11i929wDA3IpP_1t6w"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 9.95140612040501,
+            "center_y": 4.705541017388896,
+            "center_z": 2.5272440135494207,
+            "length": 0.08402009759148257,
+            "width": 0.4619226250616375,
+            "height": 0.49000000000000377,
+            "heading": -0.0032079713845178937
+        },
+        "metadata": {
+            "speed_x": 0.020577478247325587,
+            "speed_y": 0.016508084340216556,
+            "speed_z": -0.030283963121375823,
+            "accel_x": 1.4471979170593838e-09,
+            "accel_y": 1.151079231931362e-09,
+            "accel_z": -2.128930365330461e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "_jmuM1aTi3m54vfaWQ_f-A"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 51.61960381862812,
+            "center_y": -5.224101075727958,
+            "center_z": 2.9148061670072707,
+            "length": 0.12616943102535988,
+            "width": 1.1178605049580765,
+            "height": 1.2200000000000042,
+            "heading": 2.9740054219219996
+        },
+        "metadata": {
+            "speed_x": 1.0658141036401503e-13,
+            "speed_y": 0.0,
+            "speed_z": -0.06154497039820725,
+            "accel_x": -1.7763568394002502e-13,
+            "accel_y": -8.5265128291212e-12,
+            "accel_z": -3.028582246100697e-09
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "axoV17DBmYTFAf6QnU0b9A"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.66567612122401,
+            "center_y": -19.19357478297934,
+            "center_z": 2.6653734154162123,
+            "length": 4.889649677509897,
+            "width": 2.035989643682975,
+            "height": 2.030000000000003,
+            "heading": -3.088713592676796
+        },
+        "metadata": {
+            "speed_x": -0.0019772333978096412,
+            "speed_y": -0.0026599665730486777,
+            "speed_z": -0.030613371635639097,
+            "accel_x": 9.805489753489381e-11,
+            "accel_y": 1.27897692436818e-10,
+            "accel_z": 1.50645329544119e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "byTye7d6lGA6xMesJf5YZg"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 70.68816331078483,
+            "center_y": -3.8781878959416645,
+            "center_z": 3.581747465767563,
+            "length": 4.209813645340688,
+            "width": 1.9613959906866567,
+            "height": 1.7700000000000036,
+            "heading": -0.0017591136285695086
+        },
+        "metadata": {
+            "speed_x": -7.105427357601002e-14,
+            "speed_y": 1.7053025658242404e-12,
+            "speed_z": -6.938893903907228e-16,
+            "accel_x": 5.32907051820075e-13,
+            "accel_y": 4.2632564145606e-12,
+            "accel_z": -2.081668171172168e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "cb98ytKiCtoNQo1ujCvp8Q"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -11.791709610628118,
+            "center_y": 6.144801964024737,
+            "center_z": 2.7554610044883248,
+            "length": 0.0874896922704684,
+            "width": 0.6511430105120941,
+            "height": 0.690000000000003,
+            "heading": 1.1424463369234976
+        },
+        "metadata": {
+            "speed_x": 0.06440716025995386,
+            "speed_y": 0.001890320279755997,
+            "speed_z": -0.03802869501088657,
+            "accel_x": 8.881784197001251e-13,
+            "accel_y": -7.105427357601001e-12,
+            "accel_z": -2.775557561562891e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "fChrJeYo77HCXkVWZuH0jw"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -56.38001643052911,
+            "center_y": -3.691233138264579,
+            "center_z": 3.293889788397223,
+            "length": 0.12261518058039655,
+            "width": 1.0356294782815627,
+            "height": 1.0800000000000054,
+            "heading": 3.120011774269585
+        },
+        "metadata": {
+            "speed_x": 0.0056048822620624605,
+            "speed_y": -0.0038827412447517418,
+            "speed_z": -0.053155393437064324,
+            "accel_x": 8.881784197001251e-13,
+            "accel_y": -5.684341886080801e-12,
+            "accel_z": -1.3877787807814455e-14
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "grtcrwtqe_l1DgdOsD5p-g"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 31.836942736073212,
+            "center_y": -2.9509290035784943,
+            "center_z": 0.5525616528335036,
+            "length": 4.375748625686855,
+            "width": 1.916066234112439,
+            "height": 1.721756756756755,
+            "heading": -0.0017757506360274178
+        },
+        "metadata": {
+            "speed_x": 1.0658141036401503e-13,
+            "speed_y": 2.8421709430404007e-13,
+            "speed_z": 2.7755575615628914e-16,
+            "accel_x": 7.105427357601001e-13,
+            "accel_y": -8.5265128291212e-12,
+            "accel_z": -3.4694469519536138e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "hQbuS0qLf0gNBa2MmF_JSQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -1.0254432858967562,
+            "center_y": 27.124678160720578,
+            "center_z": -2.726747967184224,
+            "length": 4.329276872990318,
+            "width": 1.782235439689532,
+            "height": 1.5900000000000043,
+            "heading": -0.05200205410737002
+        },
+        "metadata": {
+            "speed_x": 0.0,
+            "speed_y": 0.0,
+            "speed_z": -6.597831055311943e-31,
+            "accel_x": 0.0,
+            "accel_y": 0.0,
+            "accel_z": -1.0996389570998515e-30
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "haKffgrr83w4LqrnZCJ3YA"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 3.3778373346654575,
+            "center_y": 36.032060198391264,
+            "center_z": -2.1927178504564893,
+            "length": 0.05297328830110173,
+            "width": 0.31568373803573874,
+            "height": 0.45999999999999996,
+            "heading": -1.6181283707844936
+        },
+        "metadata": {
+            "speed_x": 0.0,
+            "speed_y": 0.0,
+            "speed_z": 0.0,
+            "accel_x": 0.0,
+            "accel_y": 0.0,
+            "accel_z": 0.0
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "ijEqL_xeUvxusuI5W1WEqg"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -2.337067976518256,
+            "center_y": 7.45338401560366,
+            "center_z": 0.6550689543049941,
+            "length": 4.811322824981376,
+            "width": 2.2749477620302905,
+            "height": 2.1287267123083353,
+            "heading": -0.09442576612549569
+        },
+        "metadata": {
+            "speed_x": 0.057253649790283134,
+            "speed_y": 0.00737265680101018,
+            "speed_z": -0.033996452154873014,
+            "accel_x": -4.0239811482933866e-09,
+            "accel_y": -5.172751116333528e-10,
+            "accel_z": 2.3899104917290966e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "kXMIlNvA1nNSbT0fvYL6uA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 70.89993483708906,
+            "center_y": -6.461740600749181,
+            "center_z": 3.471614851508434,
+            "length": 4.546756413032485,
+            "width": 2.0818858294883755,
+            "height": 1.9700000000000042,
+            "heading": -0.0017591136277590458
+        },
+        "metadata": {
+            "speed_x": 3.552713678800501e-14,
+            "speed_y": -2.8421709430404007e-13,
+            "speed_z": -1.3877787807814457e-16,
+            "accel_x": 3.5527136788005004e-13,
+            "accel_y": 1.4210854715202002e-12,
+            "accel_z": -3.4694469519536138e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "l9C9tbMF6_fkc3245p-U9w"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": -57.74651750261381,
+            "center_y": 5.252647890929438,
+            "center_z": 3.0646337842179037,
+            "length": 0.062261599077591864,
+            "width": 0.44916723720764473,
+            "height": 0.480000000000004,
+            "heading": 3.0920828438625847
+        },
+        "metadata": {
+            "speed_x": 0.005271752100490801,
+            "speed_y": 0.009190474054605602,
+            "speed_z": -0.04175423113982002,
+            "accel_x": -2.593480985524365e-10,
+            "accel_y": -4.5758952182950447e-10,
+            "accel_z": 2.0546869761162152e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "lL-DBLZwrre8L5PoiCbCTQ"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 38.133855307049146,
+            "center_y": 4.076985879246422,
+            "center_z": 3.585994412488077,
+            "length": 0.10280300338481548,
+            "width": 0.6098876655475544,
+            "height": 0.7399021399766301,
+            "heading": -0.15798639735497888
+        },
+        "metadata": {
+            "speed_x": 0.00827154997036672,
+            "speed_y": -0.0023710911526109157,
+            "speed_z": -0.03365529868848305,
+            "accel_x": 0.0022040461463035395,
+            "accel_y": -0.0022504538421230787,
+            "accel_z": 0.0029633992714384045
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "lqjd_m0T90nzLZZ02K3lRg"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -9.580227428968328,
+            "center_y": -9.171277647950774,
+            "center_z": 1.0524621697405507,
+            "length": 4.735504324966989,
+            "width": 1.9959525003650926,
+            "height": 1.8800000000000043,
+            "heading": -0.08630701739208302
+        },
+        "metadata": {
+            "speed_x": 0.0443487640483653,
+            "speed_y": 0.02583789264662073,
+            "speed_z": -0.06461508755118972,
+            "accel_x": -0.0979651232139389,
+            "accel_y": -0.03428965152778573,
+            "accel_z": -0.024525600377162112
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "qyiJM--B7T3WMkNkntPpbw"
+    },
+    {
+        "type": "TYPE_SIGN",
+        "box": {
+            "center_x": 0.2957420652526821,
+            "center_y": -12.456860680880709,
+            "center_z": 4.067929577749936,
+            "length": 0.09538756271467719,
+            "width": 0.3405532665313451,
+            "height": 0.45000000000000284,
+            "heading": 1.5851952067097237
+        },
+        "metadata": {
+            "speed_x": 0.011628897682811612,
+            "speed_y": 0.008978035906466175,
+            "speed_z": -0.010525912320565878,
+            "accel_x": 5.728750807065807e-10,
+            "accel_y": 4.3627323975670146e-10,
+            "accel_z": -5.17978715475209e-10
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "sGrHZdxpRJpZ9FBB6tLdhA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -10.447523430327294,
+            "center_y": -35.29138954597147,
+            "center_z": 5.1799110419942735,
+            "length": 4.395563336997916,
+            "width": 1.8748426042551258,
+            "height": 2.299999999999997,
+            "heading": -3.1387321649113247
+        },
+        "metadata": {
+            "speed_x": 3.518840526301592e-29,
+            "speed_y": -2.8150724210412736e-28,
+            "speed_z": -5.498188322346238e-31,
+            "accel_x": 3.5188438821326257e-28,
+            "accel_y": -2.8150751057061005e-27,
+            "accel_z": -5.4981935658322276e-30
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "sKcZ1yhGZBDFVcB3TVuq1Q"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -2.0291957254940485,
+            "center_y": 31.8982158243507,
+            "center_z": -3.106487048161199,
+            "length": 4.678990570684271,
+            "width": 2.090820932092898,
+            "height": 1.8800000000000043,
+            "heading": -0.05200205410715997
+        },
+        "metadata": {
+            "speed_x": 7.037689325823094e-29,
+            "speed_y": 5.630151460658475e-28,
+            "speed_z": 0.06470797687433068,
+            "accel_x": 1.4075378651646187e-28,
+            "accel_y": 1.126030292131695e-27,
+            "accel_z": -1.5725502937314248e-16
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "tKYLeTwNhWC5ZqBXZ_rCpA"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -17.843647678978982,
+            "center_y": -2.499548704459812,
+            "center_z": 0.4699964097046063,
+            "length": 4.663435927439774,
+            "width": 2.119230883110872,
+            "height": 1.8340549351079112,
+            "heading": -0.02260581253601357
+        },
+        "metadata": {
+            "speed_x": -0.010429070299942111,
+            "speed_y": -0.008808823693016166,
+            "speed_z": -0.0764047296512399,
+            "accel_x": -5.131894909027323e-10,
+            "accel_y": -4.4337866711430246e-10,
+            "accel_z": -3.759825784044323e-09
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "tZhAj890G11ixCNO5M8YUw"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": 15.423208308333301,
+            "center_y": -2.678421864809934,
+            "center_z": 0.8513270702161151,
+            "length": 4.461949035221184,
+            "width": 1.9413620713282518,
+            "height": 2.030477517941357,
+            "heading": -0.05200205410694769
+        },
+        "metadata": {
+            "speed_x": 0.03226730599973138,
+            "speed_y": 0.004366813864180585,
+            "speed_z": -0.033766585147152195,
+            "accel_x": 0.07486109179790644,
+            "accel_y": 0.010131135630331299,
+            "accel_z": 0.011345291945397127
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "ua15S3d8bufNCHUA52uktQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -2.426131680279525,
+            "center_y": 19.359310835012366,
+            "center_z": -1.1591611087201557,
+            "length": 6.264027347028678,
+            "width": 2.565024844012403,
+            "height": 2.62999999999999,
+            "heading": -0.05200205410706982
+        },
+        "metadata": {
+            "speed_x": -3.552713678800501e-14,
+            "speed_y": -5.684341886080801e-13,
+            "speed_z": 2.7755575615628914e-16,
+            "accel_x": 3.5527136788005004e-13,
+            "accel_y": -2.8421709430404003e-12,
+            "accel_z": 2.081668171172168e-15
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "vLT2ZFa4ZnmUW7DEjJOigQ"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -10.584911558048475,
+            "center_y": -45.1298629778139,
+            "center_z": 7.548433630870704,
+            "length": 4.5462930401453505,
+            "width": 1.8879810791815752,
+            "height": 1.8900000000000041,
+            "heading": -3.138732164911715
+        },
+        "metadata": {
+            "speed_x": -1.8130995738232522e-28,
+            "speed_y": -2.9009593181172035e-27,
+            "speed_z": -2.8329680840988315e-30,
+            "accel_x": -4.029109737111841e-28,
+            "accel_y": -6.4465755793789456e-27,
+            "accel_z": -6.2954839642372516e-30
+        },
+        "detection_difficulty_level": 2,
+        "tracking_difficulty_level": 2,
+        "id": "yU6z-IWNPp3a90O9Hwsa1A"
+    },
+    {
+        "type": "TYPE_VEHICLE",
+        "box": {
+            "center_x": -1.8151637080868002,
+            "center_y": 9.979255564219784,
+            "center_z": -0.07077668502654433,
+            "length": 4.8689424699987285,
+            "width": 2.0464511976530293,
+            "height": 1.8200000000000038,
+            "heading": -0.052002054107042284
+        },
+        "metadata": {
+            "speed_x": -0.011362909644851982,
+            "speed_y": -7.338558731362355e-05,
+            "speed_z": -0.01022553837452117,
+            "accel_x": 7.988276706782925e-10,
+            "accel_y": 1.4210854715202002e-12,
+            "accel_z": 7.188388773116116e-10
+        },
+        "detection_difficulty_level": 0,
+        "tracking_difficulty_level": 0,
+        "id": "zUQScLQUVJW3Ht_yohjKzQ"
+    }
+]

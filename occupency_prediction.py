@@ -83,7 +83,6 @@ class Visualizer:
                 self.color_maps["bbox"][dataset_name][label] = [x / 256 for x in self.color_maps["bbox"][dataset_name][label]]
                 self.color_maps["bbox"][dataset_name][label] = np.asarray(self.bgr_to_rgb(self.color_maps["bbox"][dataset_name][label])).T
                 
-    
     def map_colors(self, np_label: np.array, geometry_type, dataset_name: str) -> np.array:
         """
         Map colors to pcd using labels
@@ -191,7 +190,7 @@ class Visualizer:
         
         return list_of_bboxes
 
-    def visualize(self, np_pcd, np_pcd_label, np_bbox=None, np_bbox_label=None, dataset_name: str="", height: float=50.0, video_name: str="") -> None:
+    def visualize(self, np_pcd, np_pcd_label, np_lidar_pose, np_bbox=None, np_bbox_label=None, dataset_name: str="", height: float=50.0, video_name: str="") -> None:
         """
         Receive list of, or one numpy.array pcds and label and Visualize sequently.
 
@@ -212,20 +211,13 @@ class Visualizer:
             assert type(np_bbox) == np.array or type(np_bbox) == list, f"Invalid np_bbox(type {type(np_bbox)}) received."
             assert type(np_bbox_label) == np.array or type(np_bbox_label) == list, f"Invalid np_bbox_label(type {type(np_bbox_label)}) received."
 
-        assert len(np_pcd) == len(np_pcd_label), f"pcd({np_pcd}) and labal({np_pcd_label}) numbers doens't match."
+        assert len(np_pcd) == len(np_pcd_label) == len(np_lidar_pose), f"pcd({np_pcd}) and labal({np_pcd_label}) and pose({np_lidar_pose}) numbers doens't match."
 
         vis = o3d.visualization.Visualizer()
         vis.create_window(width=WIDTH, height=HEIGHT)
         ctr = vis.get_view_control()
         trajectory = o3d.io.read_pinhole_camera_trajectory(self.camera_trajectory_path)
         
-        # Modify extrisic to set height
-        parameter = trajectory.parameters[0]
-        _extrinsic = np.copy(parameter.extrinsic)
-        _extrinsic[2, 3] = height
-        parameter.extrinsic = _extrinsic
-        trajectory.parameters[0] = parameter
-
         list_of_pcd = []
         list_of_bboxes = []
         list_of_image_path = []
@@ -246,13 +238,34 @@ class Visualizer:
 
         for i in range(len(list_of_pcd)):
 
-            vis.clear_geometries()  # Clear pcd and reset camera pose
+            # vis.clear_geometries()  # Clear pcd and reset camera pose
+            
+            list_of_pcd[i].transform(list_of_lidar_pose[i])
             vis.add_geometry(list_of_pcd[i])  # Add pcd seqencnce
+        
+        vis.poll_events()
+        vis.update_renderer()
+
+        for i in range(len(list_of_lidar_pose)):
+
             if np_bbox is not None:
                 for bbox in list_of_bboxes[i]:
                     vis.add_geometry(bbox)
 
+            # Modify extrisic to set height
+            parameter = trajectory.parameters[0]
+            _extrinsic = np.copy(list_of_lidar_pose[i])
+            _extrinsic[2, 3] = height
+            _extrinsic[:3, :3] = np.array(
+                [[1, 0, 0],
+                 [0, -1, 0],
+                 [0, 0, -1]]
+                 )
+            parameter.extrinsic = _extrinsic
+            trajectory.parameters[0] = parameter
+
             ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=True)  # Set camera pose
+            print(_extrinsic)
             vis.poll_events()
             vis.update_renderer()
             
@@ -264,7 +277,11 @@ class Visualizer:
                 image_name = os.path.join("images", video_name + "_%04d.jpg" % i)
                 list_of_image_path.append(image_name)
                 vis.capture_screen_image(image_name)
-        
+
+            if np_bbox is not None:
+                for bbox in list_of_bboxes[i]:
+                    vis.remove_geometry(bbox)
+
         # Create video
         if self.create_video:
             if video_name == "":
@@ -301,32 +318,33 @@ class Visualizer:
         print(f"Created video name: {video_name}")
 
 if __name__ == "__main__":
-    visualizer = Visualizer()
+    visualizer = Visualizer(create_images=True)
 
-    # from nuscene_loader import NuSceneLoader
-    from waymo_loader import WaymoLoader
+    from nuscene_loader import NuSceneLoader
+    # from waymo_loader import WaymoLoader
     
-    # NUSCENE_PATH = os.getcwd()
-    # nuscene_loader = NuSceneLoader(NUSCENE_PATH)
-    # list_of_np_pcd, list_of_label, _ = nuscene_loader.load_data_for_scene(1)
-    # List_of_bboxes = None
-    # list_of_bbox_labels = None
+    NUSCENE_PATH = os.getcwd()
+    nuscene_loader = NuSceneLoader(NUSCENE_PATH)
+    list_of_np_pcd, list_of_label, list_of_lidar_pose = nuscene_loader.load_data_for_scene(1)
+    list_of_bboxes = None
+    list_of_bbox_labels = None
 
-    WAYMO_PATH = os.getcwd()
-    waymo_loader = WaymoLoader(WAYMO_PATH)
-    list_of_np_pcd, list_of_label, list_of_bboxes, list_of_bbox_labels = waymo_loader.load_data_for_scene(0)
-    list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
+    # WAYMO_PATH = os.getcwd()
+    # waymo_loader = WaymoLoader(WAYMO_PATH)
+    # list_of_np_pcd, list_of_label, list_of_bboxes, list_of_bbox_labels = waymo_loader.load_data_for_scene(0)
+    # list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
     
     record_video = True
-    height = 50
+    height = 1075
     video_name = "test_video.mp4"
     
     visualizer.visualize(
         np_pcd=list_of_np_pcd,  # n x 3 np.array
         np_pcd_label=list_of_label, # n x 1 np.array
+        np_lidar_pose=list_of_lidar_pose,  # 4 x 4 np.array
         np_bbox=list_of_bboxes,  # n x 7 np.array
         np_bbox_label=list_of_bbox_labels,  # n x 1 np.array, use visualizer.map_bbox_label(list_of_string_bbox_label, dataset_name) to convert string label to integer labels
-        dataset_name="waymo", # [kitti|nuscene|waymo]
+        dataset_name="nuscene", # [kitti|nuscene|waymo]
         height=height,  # z-coord of BEV camera
-        video_name=video_name  # name of video to be saved in videos/
+        video_name=video_name,  # name of video to be saved in videos/
         )

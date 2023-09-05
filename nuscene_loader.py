@@ -53,11 +53,27 @@ class NuSceneLoader:
             list_of_label.append(np.fromfile(_path, dtype=np.uint8))
 
         return list_of_label
+    
+    def load_lidar_poses_for_scene(self, scene_num: int):
+        lidar_pose_scene_path = self.generate_scene_path(scene_num)["lidar_pose"]
+        list_of_lidar_pose_path = self.load_file_paths_for_scene(lidar_pose_scene_path)
+        list_of_lidar_pose = []
 
+        for _path in list_of_lidar_pose_path:
+            list_of_row_of_extrinsic = []
+            with open(_path, "r") as f:
+                for line in f.readlines():
+                    list_of_row_of_extrinsic.append([float(x) for x in line.strip().split()])
+                
+                lidar_pose = np.array(list_of_row_of_extrinsic)
+                list_of_lidar_pose.append(lidar_pose)
+
+        return list_of_lidar_pose
+    
     def load_data_for_scene(self, scene_num: int):
         list_of_pcd = self.load_pcds_for_scene(scene_num)
         list_of_label = self.load_labels_for_scene(scene_num)
-        
+        list_of_lidar_pose = self.load_lidar_poses_for_scene(scene_num)    
         for i in range(0, len(list_of_pcd)):
             # remove noises
             list_of_label[i] = list_of_label[i] & 0xFF  # filt out odd labels
@@ -72,5 +88,5 @@ class NuSceneLoader:
 
             list_of_label[i] -= 24  # shift label to start from 0
 
-        return list_of_pcd, list_of_label
+        return list_of_pcd, list_of_label, list_of_lidar_pose
     

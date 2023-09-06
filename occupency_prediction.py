@@ -5,9 +5,10 @@ from math import sin, cos
 import yaml
 import numpy as np
 import open3d as o3d
+from numpy.linalg import inv
 
-WIDTH = 1600
-HEIGHT = 900
+WIDTH = 1920
+HEIGHT = 1080
 
 
 def read_yaml(path):
@@ -137,6 +138,35 @@ class Visualizer:
 
         return list_of_pcd
 
+    def merge_pcds(self, list_of_np_pcd: list[np.array], list_of_np_pcd_label: list[np.array], list_of_np_lidar_pose: list[np.array], dataset_name: str):
+        """
+        Receive list of numpy.array pcds and pcd labels and lidar poses to merge all pcds into world frame
+        
+        :param list_of_np_pcd:
+        :param list_of_np_pcd_label:
+        :param list_of_np_lidar_pose:
+        :param dataset_name:
+        :return merged_np_pcd, merged_np_label: 
+        
+        """
+        
+        merged_np_pcd = np.array([])
+        merged_np_pcd_label = np.array([])
+        for np_pcd, np_pcd_label, np_lidar_pose in zip(list_of_np_pcd, list_of_np_pcd_label, list_of_lidar_pose):
+            
+            # Set pcd from camera frame to world frame
+            _pcd = np.ones((np_pcd.shape[0], 4),dtype=np_pcd.dtype)
+            _pcd[:, :3] = np_pcd
+            _pcd = _pcd.T
+            _pcd = np.matmul(np_lidar_pose, _pcd)
+            _pcd = _pcd.T
+            _pcd = _pcd[:, :3]
+            
+            merged_np_pcd = np.vstack((merged_np_pcd, _pcd)) if merged_np_pcd.size != 0 else _pcd
+            merged_np_pcd_label = np.hstack((merged_np_pcd_label, np_pcd_label)) if merged_np_pcd_label.size != 0 else np_pcd_label
+        
+        return merged_np_pcd, merged_np_pcd_label
+    
     @staticmethod
     def calculate_bounds(np_bbox: np.array) -> list[np.array]:
         """
@@ -223,11 +253,13 @@ class Visualizer:
         list_of_image_path = []
         
         if type(np_pcd) == np.array:
-            list_of_pcd = self.preprocess_pcd([np_pcd], [np_pcd_label], dataset_name)
-
+            pcd, label = self.merge_pcds([np_pcd], [np_pcd_label], [np_lidar_pose], dataset_name)
+            pcd = self.preprocess_pcd([pcd], [label], dataset_name)[0]
+            
         elif type(np_pcd) == list:
-            list_of_pcd = self.preprocess_pcd(np_pcd, np_pcd_label, dataset_name)
-        
+            pcd, label = self.merge_pcds(np_pcd, np_pcd_label, np_lidar_pose, dataset_name)
+            pcd = self.preprocess_pcd([pcd], [label], dataset_name)[0]
+            
         if np_bbox is not None:
             if type(np_bbox) == np.array:
                 list_of_bboxes = self.preprocess_bbox([np_bbox], [np_bbox_label], dataset_name)
@@ -235,16 +267,15 @@ class Visualizer:
             elif type(np_bbox) == list:
                 list_of_bboxes = self.preprocess_bbox(np_bbox, np_bbox_label, dataset_name)
 
-
-        for i in range(len(list_of_pcd)):
-
-            # vis.clear_geometries()  # Clear pcd and reset camera pose
-            
-            list_of_pcd[i].transform(list_of_lidar_pose[i])
-            vis.add_geometry(list_of_pcd[i])  # Add pcd seqencnce
+        pcd.estimate_normals()
+        voxel_grid = o3d.geometry.VoxelGrid.create_from_point_cloud(pcd, voxel_size=0.3)
         
-        vis.poll_events()
-        vis.update_renderer()
+        vis.add_geometry(voxel_grid)
+        # pcd.paint_uniform_color([0,0,0])
+        # vis.add_geometry(pcd.voxel_down_sample(voxel_size=0.5))
+        b = np.array([0, 0, 0, 1]).T
+        print(np.matmul((list_of_lidar_pose[3]), b))
+        
 
         for i in range(len(list_of_lidar_pose)):
 
@@ -254,18 +285,42 @@ class Visualizer:
 
             # Modify extrisic to set height
             parameter = trajectory.parameters[0]
-            _extrinsic = np.copy(list_of_lidar_pose[i])
-            _extrinsic[2, 3] = height
+            # _extrinsic = np.copy(list_of_lidar_pose[i])
+            
+            """
+            _extrinsic = np.array(
+                [[1, 0, 0, -990.23552676],
+                [0, -1, -0, 613.49178159],
+                [0, -0, -1, 25.28192133],
+                [0, 0, 0, 1]]
+                )
+            """
+            
+            """
             _extrinsic[:3, :3] = np.array(
                 [[1, 0, 0],
-                 [0, -1, 0],
-                 [0, 0, -1]]
-                 )
+                [0, -1, -0],
+                [0, -0, -1]]
+            )
+            """
+            
+            _extrinsic = inv(np.array(
+                [[1, 0, 0, 1.005670e+03],
+                [0, 1, -0, 6.37583930e+02],
+                [0, -0, 1, -10],
+                [0, 0, 0, 1]])
+                )
+            # TODO: :3, :3까지 I로, t행렬은 pose *n origin, height 는 -1
+            
+            
+            
+            # _extrinsic[2, 3] = height
+            
             parameter.extrinsic = _extrinsic
             trajectory.parameters[0] = parameter
 
             ctr.convert_from_pinhole_camera_parameters(trajectory.parameters[0], allow_arbitrary=True)  # Set camera pose
-            print(_extrinsic)
+            a = ctr.convert_to_pinhole_camera_parameters()
             vis.poll_events()
             vis.update_renderer()
             
@@ -335,7 +390,7 @@ if __name__ == "__main__":
     # list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
     
     record_video = True
-    height = 1075
+    height = 500
     video_name = "test_video.mp4"
     
     visualizer.visualize(

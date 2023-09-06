@@ -212,8 +212,6 @@ class Visualizer:
             assert type(np_bbox) == np.array or type(np_bbox) == list, f"Invalid np_bbox(type {type(np_bbox)}) received."
             assert type(np_bbox_label) == np.array or type(np_bbox_label) == list, f"Invalid np_bbox_label(type {type(np_bbox_label)}) received."
 
-        assert len(np_pcd) == len(np_pcd_label), f"pcd({np_pcd}) and labal({np_pcd_label}) numbers doens't match."
-
         vis = o3d.visualization.Visualizer()
         vis.create_window(width=WIDTH, height=HEIGHT)
         ctr = vis.get_view_control()
@@ -303,24 +301,23 @@ class Visualizer:
 if __name__ == "__main__":
     visualizer = Visualizer()
 
-    # from nuscene_loader import NuSceneLoader
-    from waymo_loader import WaymoLoader
+    from nuscene_loader import NuSceneLoader
     
-    # NUSCENE_PATH = os.getcwd()
-    # nuscene_loader = NuSceneLoader(NUSCENE_PATH)
-    # list_of_np_pcd, list_of_label, _ = nuscene_loader.load_data_for_scene(1)
-    # List_of_bboxes = None
-    # list_of_bbox_labels = None
-
-    WAYMO_PATH = os.getcwd()
-    waymo_loader = WaymoLoader(WAYMO_PATH)
-    list_of_np_pcd, list_of_label, list_of_bboxes, list_of_bbox_labels = waymo_loader.load_data_for_scene(0)
-    list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
+    # from waymo_loader import WaymoLoader
+    
+    NUSCENE_PATH = os.getcwd()
+    nuscene_loader = NuSceneLoader(NUSCENE_PATH)
+    list_of_np_pcd, list_of_label, _ = nuscene_loader.load_data_for_scene(1)
+    list_of_bboxes, list_of_bbox_labels = None, None
+    
+    # WAYMO_PATH = os.getcwd()
+    # waymo_loader = WaymoLoader(WAYMO_PATH)
+    # list_of_np_pcd, list_of_label, list_of_bboxes, list_of_bbox_labels = waymo_loader.load_data_for_scene(0)
+    # list_of_bbox_labels = [visualizer.map_bbox_label(x, "waymo") for x in list_of_bbox_labels]
     
     record_video = True
     height = 50
     video_name = "test_video.mp4"
-    
     visualizer.visualize(
         np_pcd=list_of_np_pcd,  # n x 3 np.array
         np_pcd_label=list_of_label, # n x 1 np.array

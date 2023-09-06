@@ -65,7 +65,7 @@ class NuSceneLoader:
                 for line in f.readlines():
                     list_of_row_of_extrinsic.append([float(x) for x in line.strip().split()])
                 
-                lidar_pose = np.array(list_of_row_of_extrinsic)
+                lidar_pose = np.array(list_of_row_of_extrinsic, dtype=np.float64)
                 list_of_lidar_pose.append(lidar_pose)
 
         return list_of_lidar_pose
